@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw
 import math
 
-for k in range(1, 128):
+for k in range(1, 169):
 
     image = Image.open("Original.jpeg")
 
@@ -372,6 +372,170 @@ for k in range(1, 128):
         elif mode==127:
             s = (r+g+b)//3
             draw.point((i, j),(r, s, s**2))
+        elif mode==128:
+            draw.point((width-i, height-j),(r, g, b))
+        elif mode==129:
+            draw.point((width-i, j),(r, g, b))
+        elif mode==130:
+            draw.point((i, height-j),(r, g, b))
+        elif mode==131:
+            draw.point((width-2*i, height-2*j),(r, g, b))
+        elif mode==132:
+            draw.point((i, height-2*j),(r, g, b))
+        elif mode==133:
+            draw.point((width-2*i, j),(r, g, b))
+        elif mode==134:
+            draw.point((width//2-i, height//2-j),(r, g, b))
+        elif mode==135:
+            draw.point((i, height//2-j),(r, g, b))
+        elif mode==136:
+            draw.point((width//2-i, j),(r, g, b))
+        elif mode==137:
+            draw.point((width%(i+1), height%(j+1)),(r, g, b))
+        elif mode==138:
+            draw.point((width%(i+1), j),(r, g, b))
+        elif mode==139:
+            draw.point((i, height%(j+1)),(r, g, b))
+        elif mode==140:
+            draw.point((j, i),(r, g, b))
+        elif mode==141:
+            draw.point((width-j, height-i),(r, g, b))
+        elif mode==142:
+            draw.point((height-j, width-i),(r, g, b))
+        elif mode==143:
+            draw.point((i**2, j**2),(r, g, b))
+        elif mode==144:
+            draw.point((i**2, j),(r, g, b))
+        elif mode==145:
+            draw.point((i, j**2),(r, g, b))
+        elif mode==146:
+            draw.point((i, math.sqrt(j)),(r, g, b))
+        elif mode==147:
+            draw.point((math.sqrt(i), j),(r, g, b))
+        elif mode==148:
+            draw.point((i**2, math.sqrt(j)),(r, g, b))
+        elif mode==149:
+            draw.point((math.sqrt(i), j**2),(r, g, b))
+        elif mode==150:
+            if not 110<i<160 and not 40<j<110:
+                draw.point((i, j),(255, 255, 255))
+        elif mode==151:
+            if 110<i<160 and 40<j<110:
+                draw.point((i, j),(255, 255, 255))
+        elif mode==152:
+            if not(100<i<150 and 40<j<110):
+                draw.point((i, j),(255, 255, 255))
+        elif mode==153:
+            if not(100<i<150 and 40<j<110):
+                draw.point((i, j),(255, 255, 255))
+            elif i==125 or j==75:
+                draw.point((i, j),(255, 255, 255))
+        elif mode==154:
+            if not(100<i<150 and 40<j<110):
+                draw.point((i, j),(255, 255, 255))
+            elif i==125 or j==75:
+                draw.point((i, j),(255, 255, 255))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+        elif mode==155:
+            if not(100<i<150 and 40<j<110) and not(10<i<60 and 10<j<80):
+                draw.point((i, j),(255, 255, 255))
+            elif (i==125 or j==75) or (i==35 or j==45):
+                draw.point((i, j),(255, 255, 255))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+        elif mode==156:
+            if not(100<i<150 and 40<j<110) and not(10<i<60 and 0<j<70) and not(190<i<240 and 80<j<150):
+                draw.point((i, j),(255, 255, 255))
+            elif (i==125 or j==75) or (i==35 or j==25) or (i==205 or j==115):
+                draw.point((i, j),(255, 255, 255))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+        elif mode==157:
+            if not(100<i<150 and 40<j<110):
+                draw.point((i, j),(255, 255, 0))
+            elif i==125 or j==75:
+                draw.point((i, j),(255, 255, 0))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+        elif mode==158:
+            if not(100<i<150 and 40<j<110) and not(10<i<60 and 10<j<80):
+                draw.point((i, j),(255, 255, 0))
+            elif (i==125 or j==75) or (i==35 or j==45):
+                draw.point((i, j),(255, 255, 0))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+        elif mode==159:
+            if not(100<i<150 and 40<j<110) and not(10<i<60 and 0<j<70) and not(190<i<240 and 80<j<150):
+                draw.point((i, j),(255, 255, 0))
+            elif (i==125 or j==75) or (i==35 or j==25) or (i==205 or j==115):
+                draw.point((i, j),(255, 255, 0))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+        elif mode==160:
+            if not(100<i<150 and 40<j<110):
+                draw.point((i, j),(255, 205, 0))
+            elif i==125 or j==75:
+                draw.point((i, j),(255, 205, 0))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+        elif mode==161:
+            if not(100<i<150 and 40<j<110) and not(10<i<60 and 10<j<80):
+                draw.point((i, j),(255, 205, 0))
+            elif (i==125 or j==75) or (i==35 or j==45):
+                draw.point((i, j),(255, 255, 0))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+        elif mode==162:
+            if not(100<i<150 and 40<j<110) and not(10<i<60 and 0<j<70) and not(190<i<240 and 80<j<150):
+                draw.point((i, j),(255, 205, 0))
+            elif (i==125 or j==75) or (i==35 or j==25) or (i==205 or j==115):
+                draw.point((i, j),(255, 205, 0))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+        elif mode==163:
+            if not(100<i<150 and 40<j<110):
+                draw.point((i, j),(2*r, g, 0))
+            elif i==125 or j==75:
+                draw.point((i, j),(2*r, g, 0))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+        elif mode==164:
+            if not(100<i<150 and 40<j<110) and not(10<i<60 and 10<j<80):
+                draw.point((i, j),(2*r, g, 0))
+            elif (i==125 or j==75) or (i==35 or j==45):
+                draw.point((i, j),(2*r, g, 0))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+        elif mode==165:
+            if not(100<i<150 and 40<j<110) and not(10<i<60 and 0<j<70) and not(190<i<240 and 80<j<150):
+                draw.point((i, j),(2*r, g, 0))
+            elif (i==125 or j==75) or (i==35 or j==25) or (i==205 or j==115):
+                draw.point((i, j),(2*r, g, 0))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+        elif mode==166:
+            if not(100<i<150 and 40<j<110):
+                draw.point((i, j),(r, 0, 0))
+            elif i==125 or j==75:
+                draw.point((i, j),(r, 0, 0))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+        elif mode==167:
+            if not(100<i<150 and 40<j<110) and not(10<i<60 and 10<j<80):
+                draw.point((i, j),(r, 0, 0))
+            elif (i==125 or j==75) or (i==35 or j==45):
+                draw.point((i, j),(r, 0, 0))
+            else:
+                draw.point((i, j),(r, 0, 2*b))
+        elif mode==168:
+            if not(100<i<150 and 40<j<110) and not(10<i<60 and 0<j<70) and not(190<i<240 and 80<j<150):
+                draw.point((i, j),(r, 0, 0))
+            elif (i==125 or j==75) or (i==35 or j==25) or (i==205 or j==115):
+                draw.point((i, j),(r, 0, 0))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+                
                         
     image.save("Image"+str(k)+".jpg", "JPEG")
 
