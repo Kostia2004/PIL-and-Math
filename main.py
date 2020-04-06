@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw
 import math
 
-for k in range(1, 169):
+for k in range(172, 175):
 
     image = Image.open("Original.jpeg")
 
@@ -533,6 +533,48 @@ for k in range(1, 169):
                 draw.point((i, j),(r, 0, 0))
             elif (i==125 or j==75) or (i==35 or j==25) or (i==205 or j==115):
                 draw.point((i, j),(r, 0, 0))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+        elif mode==169:
+            if not(100<i<150 and 40<j<110):
+                draw.point((i, j),(0, g, 0))
+            elif i==125 or j==75:
+                draw.point((i, j),(0, g, 0))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+        elif mode==170:
+            if not(100<i<150 and 40<j<110) and not(10<i<60 and 10<j<80):
+                draw.point((i, j),(0, g, 0))
+            elif (i==125 or j==75) or (i==35 or j==45):
+                draw.point((i, j),(0, g, 0))
+            else:
+                draw.point((i, j),(r, 0, 2*b))
+        elif mode==171:
+            if not(100<i<150 and 40<j<110) and not(10<i<60 and 0<j<70) and not(190<i<240 and 80<j<150):
+                draw.point((i, j),(0, g, 0))
+            elif (i==125 or j==75) or (i==35 or j==25) or (i==205 or j==115):
+                draw.point((i, j),(0, g, 0))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+        elif mode==172:
+            if not(100<i<150 and 40<j<110):
+                draw.point((i, j),(0, g, b))
+            elif i==125 or j==75:
+                draw.point((i, j),(0, g, b))
+            else:
+                draw.point((i, j),(r, g, 2*b))
+        elif mode==173:
+            if not(100<i<150 and 40<j<110) and not(10<i<60 and 10<j<80):
+                draw.point((i, j),(0, g, b))
+            elif (i==125 or j==75) or (i==35 or j==45):
+                draw.point((i, j),(0, g, b))
+            else:
+                draw.point((i, j),(r, 0, 2*b))
+        elif mode==174:
+            if not(100<i<150 and 40<j<110) and not(10<i<60 and 0<j<70) and not(190<i<240 and 80<j<150):
+                draw.point((i, j),(0, g, b))
+            elif (i==125 or j==75) or (i==35 or j==25) or (i==205 or j==115):
+                draw.point((i, j),(0, g, b))
             else:
                 draw.point((i, j),(r, g, 2*b))
                 
