@@ -1,7 +1,8 @@
 from PIL import Image, ImageDraw
 import math
+from progressbar import ProgressBar
 
-for k in range(172, 175):
+for k in range(1, 175):
 
     image = Image.open("Original.jpeg")
 
@@ -14,6 +15,10 @@ for k in range(172, 175):
     #mode = int(input())
     mode = k
 
+    pbar = ProgressBar(maxval=width*height)
+    pbar.start()
+
+    print(str(k)+'.', end='')
     for i in range(width):
       for j in range(height):
         r = pix[i, j][0]
@@ -577,7 +582,8 @@ for k in range(172, 175):
                 draw.point((i, j),(0, g, b))
             else:
                 draw.point((i, j),(r, g, 2*b))
-                
+      
+      pbar.update(i*j)        
                         
     image.save("Image"+str(k)+".jpg", "JPEG")
 
