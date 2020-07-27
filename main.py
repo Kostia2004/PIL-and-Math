@@ -4,7 +4,7 @@ from progressbar import ProgressBar
 import sys
 import mods
 
-modsquantity = 98
+modsquantity = 110
 
 def rgbget(pixel):
     r = pixel[0]

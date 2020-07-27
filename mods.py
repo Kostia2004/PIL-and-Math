@@ -98,8 +98,19 @@ def modeget(mode, r, g, b, s):
             [math.ceil(g ** 1.3), math.ceil(b ** 1.3), math.ceil(r ** 1.3)],
             [math.ceil(r ** 1.3), math.ceil(b ** 1.3), math.ceil(g ** 1.3)],
             [math.ceil(b ** 1.3), math.ceil(g ** 1.3), math.ceil(r ** 1.3)],
-            [math.ceil(g ** 1.3), math.ceil(r ** 1.3), math.ceil(b ** 1.3)]
-            ]
+            [math.ceil(g ** 1.3), math.ceil(r ** 1.3), math.ceil(b ** 1.3)],
+            [math.ceil(math.sin(r)*255), g, b],
+            [math.ceil(math.sin(r*180/math.pi)*255), g, b],
+            [r, math.ceil(math.sin(g) * 255), b],
+            [r, math.ceil(math.sin(g * 180 / math.pi) * 255), b],
+            [r, g, math.ceil(math.sin(b) * 255)],
+            [r, g, math.ceil(math.sin(r * 180 / math.pi) * 255)],
+            [math.ceil(math.cos(r) * 255), g, b],
+            [math.ceil(math.cos(r * 180 / math.pi) * 255), g, b],
+            [r, math.ceil(math.cos(g) * 255), b],
+            [r, math.ceil(math.cos(g * 180 / math.pi) * 255), b],
+            [r, g, math.ceil(math.cos(b) * 255)],
+            [r, g, math.ceil(math.cos(r * 180 / math.pi) * 255)]]
     #print(len(mods))
     return mods[mode][0], mods[mode][1], mods[mode][2]
 
