@@ -2,35 +2,35 @@ from PIL import Image, ImageDraw
 import math
 from progressbar import ProgressBar
 import sys
-import mods
+import Pixel
 
-modsquantity = 110
+def rgbget(pix):
+    pixel.getcolors(pix[0], pix[1], pix[2])
+    
 
-def rgbget(pixel):
-    r = pixel[0]
-    g = pixel[1]
-    b = pixel[2]
-    s = int((r + g + b) // 3)
-    return r, g, b, s
-
-def processing(mode, width, height, pix, draw):
+def processing(mode, pix, width, height, draw):
     for i in range(width):
         for j in range(height):
-            r, g, b, s = rgbget(pix[i, j])
-            draw.point((i, j), (mods.modeget(mode, r, g, b, s)))
+            pixel = Pixel.Pixel(*pix[i, j])
+            draw.point((i, j), (pixel.modeget(mode)))
             pbar.update(i * j)
+            del pixel
 
-def negative(mode, width, height, pix, draw):
+def negative(mode, pix, width, height, draw):
     for i in range(width):
         for j in range(height):
-            r, g, b, s = rgbget(pix[i, j])
-            red, green, blue = mods.modeget(mode, r, g, b, s)
+            pixel = Pixel.Pixel(*pix[i, j])
+            red, green, blue = pixel.modeget(mode)
             draw.point((i, j), (255-red, 255-green, 255-blue))
             pbar.update(i * j)
+            del pixel
 
 def main():
-    IMAGE_NAME = sys.argv[1]
+    #IMAGE_NAME = sys.argv[1]
 
+    pixel = Pixel.Pixel(0, 0, 0)
+    modsquantity = pixel.getmodsquantity()
+    
     selectedmods = []
 
     wrongoption = True
@@ -66,10 +66,12 @@ def main():
             except:
                 print('Wrong option')
 
+    del pixel
+
 
     for mode in selectedmods:
-        image = Image.open(IMAGE_NAME)
-        #image = Image.open("Original.jfif")
+        #image = Image.open(IMAGE_NAME)
+        image = Image.open("RNC8BPfWajI.jpg")
 
         draw = ImageDraw.Draw(image)
         width = image.size[0]
@@ -85,9 +87,9 @@ def main():
         pbar.start()
 
         if mode%2==0:
-            processing(mode = int(mode/2), width = width, height = height, pix = pix, draw = draw)
+            processing(mode = int(mode/2), pix=pix, width = width, height = height, draw = draw)
         else:
-            negative(mode=int(mode//2), width=width, height=height, pix=pix, draw=draw)
+            negative(mode = int(mode//2), pix=pix, width=width, height=height, draw=draw)
         print('')
         image.save("Image" + str(mode + 1) + ".jpg", "JPEG")
 
