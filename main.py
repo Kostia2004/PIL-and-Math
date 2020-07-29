@@ -26,7 +26,7 @@ def negative(mode, pix, width, height, draw):
             del pixel
 
 def main():
-    #IMAGE_NAME = sys.argv[1]
+    IMAGE_NAME = sys.argv[1]
 
     pixel = Pixel.Pixel(0, 0, 0)
     modsquantity = pixel.getmodsquantity()
@@ -44,7 +44,7 @@ def main():
             else:
                 print('Wrong option')
         elif select.endswith("-"):
-            modenumber = select[:1]
+            modenumber = select[:-1]
             if modenumber.isdigit():
                 selectedmods = list(range(int(modenumber) - 1, modsquantity * 2))
                 wrongoption = False
@@ -70,9 +70,8 @@ def main():
 
 
     for mode in selectedmods:
-        #image = Image.open(IMAGE_NAME)
-        image = Image.open("RNC8BPfWajI.jpg")
-
+        image = Image.open(IMAGE_NAME)
+        
         draw = ImageDraw.Draw(image)
         width = image.size[0]
         height = image.size[1]
