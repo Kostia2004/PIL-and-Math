@@ -8,15 +8,21 @@ def rgbget(pix):
     pixel.getcolors(pix[0], pix[1], pix[2])
     
 
-def processing(mode, pix, width, height, draw):
+def processing(mode, pix, width, height, draw, image):
+    print(str(mode + 1) + ". Image")
+    pbar.start()
     for i in range(width):
         for j in range(height):
             pixel = Pixel.Pixel(*pix[i, j])
             draw.point((i, j), (pixel.modeget(mode)))
             pbar.update(i * j)
             del pixel
+    image.save("Image" + str(mode + 1) + ".jpg", "JPEG")
+    print('')
 
-def negative(mode, pix, width, height, draw):
+def negative(mode, pix, width, height, draw, image):
+    print(str(mode + 1) + ". Negative")
+    pbar.start()
     for i in range(width):
         for j in range(height):
             pixel = Pixel.Pixel(*pix[i, j])
@@ -24,6 +30,8 @@ def negative(mode, pix, width, height, draw):
             draw.point((i, j), (255-red, 255-green, 255-blue))
             pbar.update(i * j)
             del pixel
+    image.save("Negative" + str(mode + 1) + ".jpg", "JPEG")
+    print('')
 
 def main():
     IMAGE_NAME = sys.argv[1]
@@ -46,7 +54,7 @@ def main():
         elif select.endswith("-"):
             modenumber = select[:-1]
             if modenumber.isdigit():
-                selectedmods = list(range(int(modenumber) - 1, modsquantity * 2))
+                selectedmods = list(range(int(modenumber) - 1, modsquantity))
                 wrongoption = False
             else:
                 print('Wrong option')
@@ -80,17 +88,10 @@ def main():
         pbar = ProgressBar(maxval=width * height)
 
         pix = image.load()
-
-        print(str(mode + 1) + ".")
-
-        pbar.start()
-
-        if mode%2==0:
-            processing(mode = int(mode/2), pix=pix, width = width, height = height, draw = draw)
-        else:
-            negative(mode = int(mode//2), pix=pix, width=width, height=height, draw=draw)
+        
+        processing(mode = mode, pix=pix, width = width, height = height, draw = draw, image = image)
+        negative(mode = mode, pix=pix, width=width, height=height, draw=draw, image = image)
         print('')
-        image.save("Image" + str(mode + 1) + ".jpg", "JPEG")
 
 if __name__=='__main__':
     main()
