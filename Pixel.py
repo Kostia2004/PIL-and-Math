@@ -7,7 +7,7 @@ class Pixel:
         b = blue
         s = (red+green+blue)//3
         
-        Pixel.mods = [[r, g, b],
+        Pixel.__mods = [[r, g, b],
                 [s, s, s],
                 [r, 0, 0],
                 [2*r, g, b],
@@ -119,7 +119,7 @@ class Pixel:
                 [r, g, math.ceil(math.cos(r * 180 / math.pi) * 255)]]
     
     def modeget(self, mode):
-        return Pixel.mods[mode][0], Pixel.mods[mode][1], Pixel.mods[mode][2]
+        return Pixel.__mods[mode][0], Pixel.__mods[mode][1], Pixel.__mods[mode][2]
 
     def getmodsquantity(self):
-        return len(Pixel.mods)
+        return len(Pixel.__mods)
