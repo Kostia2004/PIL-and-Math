@@ -34,7 +34,7 @@ def negative(mode, pix, width, height, draw, image):
     print('')
 
 def main():
-    IMAGE_NAME = sys.argv[1]
+    #IMAGE_NAME = sys.argv[1]
 
     pixel = Pixel.Pixel(0, 0, 0)
     modsquantity = pixel.getmodsquantity()
@@ -43,42 +43,55 @@ def main():
 
     wrongoption = True
     while(wrongoption):
-        select = input("Select mods: ")
-        if select.startswith("-"):
-            modenumber = select[1:]
-            if modenumber.isdigit():
-                selectedmods = list(range(int(modenumber) - 1))
-                wrongoption = False
+        print("-p, -P \t Positive mods;")
+        print("-n, -N \t Negative mods;")
+        print("-a, -A \t All mods;")
+        global administration
+        administration = list(input("Select mods: ").split(" "))
+        select = administration[:-1]
+        print(administration)
+        if len(select)==1:
+            select = select[0]
+            print(select)
+            if select.startswith("-"):
+                modenumber = select[1:]
+                if modenumber.isdigit():
+                    selectedmods = list(range(int(modenumber) - 1))
+                    wrongoption = False
+                else:
+                    print('Wrong option 1')
+            elif select.endswith("-"):
+                modenumber = select[:-1]
+                if modenumber.isdigit():
+                    selectedmods = list(range(int(modenumber) - 1, modsquantity))
+                    wrongoption = False
+                else:
+                    print('Wrong option 2')
+            elif select.find('-')!=-1:
+                try:
+                    modenumber = list(map(int, select.split("-")))
+                    selectedmods = list(range(modenumber[0] - 1, modenumber[1]))
+                    wrongoption = False
+                except:
+                    print('Wrong option 3')
             else:
-                print('Wrong option')
-        elif select.endswith("-"):
-            modenumber = select[:-1]
-            if modenumber.isdigit():
-                selectedmods = list(range(int(modenumber) - 1, modsquantity))
+                selectedmods.append(int(select) - 1)
                 wrongoption = False
-            else:
-                print('Wrong option')
-        elif select.find('-')!=-1:
-            try:
-                modenumber = list(map(int, select.split("-")))
-                selectedmods = list(range(modenumber[0] - 1, modenumber[1]))
-                wrongoption = False
-            except:
-                print('Wrong option')
         else:
-            try:
-                selectedmods = list(map(int, select.split(" ")))
-                for i in range(len(selectedmods)):
-                    selectedmods[i]=selectedmods[i]-1
-                wrongoption = False
-            except:
-                print('Wrong option')
+            selectedmods = list(map(int, select))
+            #try:
+            for i in range(len(selectedmods)):
+                selectedmods[i]=selectedmods[i]-1
+            wrongoption = False
+            #except:
+            #    print('Wrong option 4')
+        print('----------------------------------------------------------------')
 
     del pixel
 
 
     for mode in selectedmods:
-        image = Image.open(IMAGE_NAME)
+        image = Image.open("pp.jfif")
         
         draw = ImageDraw.Draw(image)
         width = image.size[0]
@@ -88,9 +101,15 @@ def main():
         pbar = ProgressBar(maxval=width * height)
 
         pix = image.load()
-        
-        processing(mode = mode, pix=pix, width = width, height = height, draw = draw, image = image)
-        negative(mode = mode, pix=pix, width=width, height=height, draw=draw, image = image)
+
+        if administration[-1]=='-p' or administration[-1]=='-P':
+            processing(mode = mode, pix=pix, width = width, height = height, draw = draw, image = image)
+        elif administration[-1]=='-n' or administration[-1]=='-N':    
+            negative(mode = mode, pix=pix, width=width, height=height, draw=draw, image = image)
+        elif administration[-1]=='-a' or administration[-1]=='-A':
+            processing(mode = mode, pix=pix, width = width, height = height, draw = draw, image = image)
+            negative(mode = mode, pix=pix, width=width, height=height, draw=draw, image = image)
+            
         print('')
 
 if __name__=='__main__':
