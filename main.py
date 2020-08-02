@@ -34,7 +34,7 @@ def negative(mode, pix, width, height, draw, image):
     print('')
 
 def main():
-    #IMAGE_NAME = sys.argv[1]
+    IMAGE_NAME = sys.argv[1]
 
     pixel = Pixel.Pixel(0, 0, 0)
     modsquantity = pixel.getmodsquantity()
@@ -91,7 +91,7 @@ def main():
 
 
     for mode in selectedmods:
-        image = Image.open("pp.jfif")
+        image = Image.open(IMAGE_NAME)
         
         draw = ImageDraw.Draw(image)
         width = image.size[0]
