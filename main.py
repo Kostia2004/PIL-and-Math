@@ -1,5 +1,4 @@
 from PIL import Image, ImageDraw
-import math
 from progressbar import ProgressBar
 import sys
 import Pixel
@@ -40,6 +39,8 @@ def main():
     modsquantity = pixel.getmodsquantity()
     
     selectedmods = []
+
+    print("Available modes:", modsquantity)
 
     wrongoption = True
     while(wrongoption):
