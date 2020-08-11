@@ -125,7 +125,18 @@ class Pixel:
                         [r, (b * r) % 255, b],
                         [r, g, (g * b) % 255],
                         [r, (r * g) % 255, b],
-                        [(b * r) % 255, g, b]]
+                        [(b * r) % 255, g, b],
+                        [math.ceil(math.sin(r) * r), math.ceil(math.sin(g) * g), math.ceil(math.sin(b) * b)], #gray change
+                        [math.ceil(math.cos(r) * r), math.ceil(math.cos(g) * g), math.ceil(math.cos(b) * b)], #gray change
+                        [math.ceil(math.sin(r) * g), math.ceil(math.sin(g) * b), math.ceil(math.sin(b) * r)], #gray change
+                        [math.ceil(math.cos(r) * g), math.ceil(math.cos(g) * b), math.ceil(math.cos(b) * r)], #gray change
+                        [math.ceil(math.sin(r) * b), math.ceil(math.sin(g) * r), math.ceil(math.sin(b) * g)], #gray change
+                        [math.ceil(math.cos(r) * b), math.ceil(math.cos(g) * r), math.ceil(math.cos(b) * g)], #gray change
+                        [math.ceil(math.sin(g) * r), math.ceil(math.sin(b) * g), math.ceil(math.sin(r) * b)], #gray change
+                        [math.ceil(math.cos(g) * r), math.ceil(math.cos(b) * g), math.ceil(math.cos(r) * b)], #gray change
+                        [math.ceil(math.sin(b) * r), math.ceil(math.sin(r) * g), math.ceil(math.sin(g) * b)], #gray change
+                        [math.ceil(math.cos(b) * r), math.ceil(math.cos(r) * g), math.ceil(math.cos(g) * b)]  #gray change
+                        ]
     
     def modeget(self, mode):
         return Pixel.__mods[mode][0], Pixel.__mods[mode][1], Pixel.__mods[mode][2]
